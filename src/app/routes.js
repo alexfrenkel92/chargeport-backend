@@ -8,9 +8,8 @@ const post = require('./controllers/postController');
 // app.use(cors());
 app.use(express.json());
 
-
 app.use('/api/post', post);
 
-app.use('/', router)
+app.use('/', router);
 
 module.exports = app;
