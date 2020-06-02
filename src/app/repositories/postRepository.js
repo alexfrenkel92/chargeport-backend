@@ -2,10 +2,10 @@
 
 const db = require('../database.js');
 
-function createPost (post_title, post_content) {
+function createPost (postTitle, postContent) {
   return new Promise((resolve, reject) => {
-    const query = 'INSERT INTO posts (post_title,  post_content, post_timestamp) VALUES (?,?,?)';
-    db.conn.query(query, [post_title, post_content, Date.now()], (error, rows) => {
+    const query = 'INSERT INTO posts (post_title,  post_content) VALUES (?,?)';
+    db.conn.query(query, [postTitle, postContent, Date.now()], (error, rows) => {
       if (error) {
         return reject(error);
       }
@@ -50,9 +50,34 @@ function downVotePost (id) {
   });
 }
 
+function deletePost (id) {
+  return new Promise((resolve, reject) => {
+    const query = `DELETE FROM posts WHERE id= ${id}`;
+    db.conn.query(query, (error, rows) => {
+      if (error) {
+        return reject(error);
+      }
+      return resolve(rows);
+    });
+  });
+}
+
+function modifyPost (id, postTitle, postContent) {
+  return new Promise((resolve, reject) => {
+    const query = 'UPDATE posts SET post_title = ?, post_content = ? WHERE id = ?';
+    db.conn.query(query, [id, postTitle, postContent], (error, rows) => {
+      if (error) {
+        reject(error);
+      } else return resolve(rows);
+    });
+  });
+}
+
 module.exports = {
   createPost: createPost,
   getPost: getPost,
   upVotePost: upVotePost,
-  downVotePost: downVotePost
+  downVotePost: downVotePost,
+  deletePost: deletePost,
+  modifyPost: modifyPost
 };

@@ -2,9 +2,9 @@
 
 const repository = require('../repositories/postRepository.js');
 
-async function serviceCreatePost (post_title, post_content) {
+async function serviceCreatePost (postTitle, postContent) {
   try {
-    const result = await repository.createPost(post_title, post_content);
+    const result = await repository.createPost(postTitle, postContent);
     return result;
   } catch (error) {
     console.log(`Service error: ${error}`);
@@ -38,9 +38,29 @@ async function serviceDownVotePost (id) {
   }
 }
 
+async function serviceDeletePost (id) {
+  try {
+    const result = await repository.deletePost(id);
+    return result;
+  } catch (error) {
+    console.log(`Service error: ${error}`);
+  }
+}
+
+async function serviceModifyPost (id, postTitle, postContent) {
+  try {
+    const result = await repository.modifyPost(id, postTitle, postContent);
+    return result;
+  } catch (error) {
+    console.log(`Service error: ${error}`);
+  }
+}
+
 module.exports = {
   serviceCreatePost: serviceCreatePost,
   serviceGetPost: serviceGetPost,
   serviceUpVotePost: serviceUpVotePost,
-  serviceDownVotePost: serviceDownVotePost
+  serviceDownVotePost: serviceDownVotePost,
+  serviceDeletePost: serviceDeletePost,
+  serviceModifyPost: serviceModifyPost
 };

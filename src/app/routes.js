@@ -2,14 +2,17 @@
 
 const express = require('express');
 const app = express();
-const router = express.Router();
-const post = require('./controllers/postController');
-// const cors = require('cors');
-// app.use(cors());
+const cors = require('cors');
+app.use(cors());
 app.use(express.json());
+const post = require('./controllers/postController');
+const subscription = require('./controllers/subscriptionController');
+const consumption = require('./controllers/ConsumptionController');
 
 app.use('/api/post', post);
 
-// app.use('/', router);
+app.use('/api/subscription', subscription);
+
+app.use('/api/dailyconsumption', consumption);
 
 module.exports = app;
