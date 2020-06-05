@@ -1,15 +1,14 @@
 'use strict';
 
-// const path = require('path');
-// require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
-// require('dotenv').config()
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const mysql = require('mysql');
 
 const conn = mysql.createConnection({
-  host: 'sql7.freemysqlhosting.net',
-  user: 'sql7345884',
-  password: 'wCtpfCWpim',
-  database: 'sql7345884'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
 });
 
 async function connectToDatabase () {

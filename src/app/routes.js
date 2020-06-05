@@ -13,6 +13,6 @@ app.use('/api/post', post);
 
 app.use('/api/subscription', subscription);
 
-app.use('/api/dailyconsumption', consumption);
+app.use('/api/consumption', consumption);
 
 module.exports = app;
