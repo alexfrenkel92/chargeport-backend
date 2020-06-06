@@ -12,8 +12,6 @@ async function emailSender(name, email) {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD
     },
-    debug: false,
-    logger: true
   }));
 
   const mailOptions = {
