@@ -4,13 +4,16 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 const nodemailer = require('nodemailer');
 
-async function emailSender (name, email) {
+async function emailSender(name, email) {
   const transporter = nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE,
+    secure: false,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD
-    }
+    },
+    debug: false,
+    logger: true
   });
 
   const mailOptions = {
