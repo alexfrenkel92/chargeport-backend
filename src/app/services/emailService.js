@@ -5,7 +5,8 @@ require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 const nodemailer = require('nodemailer');
 
 async function emailSender(name, email) {
-  const transporter = nodemailer.createTransport({
+  const smtpTransport = require('nodemailer-smtp-transport');
+  const transporter = nodemailer.createTransport(smtpTransport({
     service: process.env.EMAIL_SERVICE,
     port: 465,
     secure: true,
@@ -15,7 +16,7 @@ async function emailSender(name, email) {
     },
     debug: false,
     logger: true
-  });
+  }));
 
   const mailOptions = {
     from: 'alex.frenkel92@gmail.com',
