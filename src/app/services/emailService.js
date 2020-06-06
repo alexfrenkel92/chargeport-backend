@@ -5,14 +5,14 @@ require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 const nodemailer = require('nodemailer');
 
 async function emailSender(name, email) {
-  const smtpTransport = require('nodemailer-smtp-transport');
-  const transporter = nodemailer.createTransport(smtpTransport({
+  // const smtpTransport = require('nodemailer-smtp-transport');
+  const transporter = nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD
     },
-  }));
+  });
 
   const mailOptions = {
     from: 'alex.frenkel92@gmail.com',
