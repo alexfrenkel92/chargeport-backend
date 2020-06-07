@@ -5,6 +5,17 @@ const router = express.Router();
 const service = require('../services/subscriptionService');
 const emailSender = require('../services/emailService');
 
+router.get('/', async (req, res) => {
+  try {
+    const getSubscription = await service.getSubscriptionService();
+    res.status(200);
+    res.send(getSubscription);
+  } catch (error) {
+    console.log(`Controller error: ${error}`);
+    return res.status(400);
+  }
+});
+
 router.post('/', async (req, res) => {
   const name = req.body.name; // E-mail service gonna use this
   const email = req.body.email; // E-mail service gonna use this

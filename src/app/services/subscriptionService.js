@@ -2,6 +2,15 @@
 
 const repository = require('../repositories/subscriptionRepository');
 
+async function getSubscriptionService () {
+  try {
+    const result = await repository.getSubscriptionRepository();
+    return result;
+  } catch (error) {
+    console.log(`Service erro: ${error}`);
+  }
+}
+
 async function postSubscriptionService () {
   try {
     const result = await repository.postSubscriptionRepository();
@@ -21,6 +30,7 @@ async function deleteSubscriptionService (id) {
 }
 
 module.exports = {
+  getSubscriptionService: getSubscriptionService,
   postSubscriptionService: postSubscriptionService,
   deleteSubscriptionService: deleteSubscriptionService
 };
