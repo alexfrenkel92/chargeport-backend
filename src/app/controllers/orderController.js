@@ -23,9 +23,10 @@ router.post('/', async (req, res) => {
     
         try {
             const post = orderService.servicePostOrders(productId, productName, productPrice, productCount);
-            res.status(201);
+            // res.status(201);
             res.send(post);
-        } catch (err) {
+        } 
+        catch (err) {
             console.log(`Post failed: ${err}`);
             return res.status(400);
         }
