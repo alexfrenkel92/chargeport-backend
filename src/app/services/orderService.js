@@ -18,7 +18,17 @@ async function serviceGetOrders() {
     }
 }
 
+async function serviceDeleteAllOrders() {
+    try {
+        const result = await repository.deleteAllOrders();
+        return result;
+    } catch (error) {
+        console.log(`Service error: ${error}`);
+    }
+}
+
 module.exports = {
     servicePostOrders: servicePostOrders,
-    serviceGetOrders: serviceGetOrders
+    serviceGetOrders: serviceGetOrders,
+    serviceDeleteAllOrders: serviceDeleteAllOrders
 }

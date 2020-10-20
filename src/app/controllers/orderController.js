@@ -44,4 +44,15 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.delete('/', async (req, res) => {
+    try {
+        const posts = await orderService.serviceDeleteAllOrders();
+        res.status(200);
+        res.send(posts);
+    } catch (error) {
+        console.log(`Controller error: ${error}`);
+        return res.status(400);
+    }
+});
+
 module.exports = router;
